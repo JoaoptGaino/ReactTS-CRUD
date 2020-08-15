@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import ProductItem,{Product} from '../../components/ProductItem';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
-    interface Product{
-        id:number;
-        name:string;
-        price:number
-    }
     useEffect(() => {
         api.get('products')
             .then(response => {
@@ -18,13 +14,13 @@ function ProductList() {
 
     return (
         <div id="product-list" className="container">
-            <ul>
+            <main>
                 {
-                    products.map((product:Product) => {
-                        return <div>{product.name}</div>
+                    products.map((product:Product)=>{
+                        return <ProductItem key={product.id} product={product}/>
                     })
                 }
-            </ul>
+            </main>
         </div>
     );
 }

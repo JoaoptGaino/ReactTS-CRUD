@@ -10,8 +10,22 @@ interface ProductItemProps {
     product: Product;
 }
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
-
+    function deleteProduct(){
+        api.delete(`products/${product.id}`)
+    }
     return (
-
+        <article className="product-item">
+            <header>
+                <div>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                </div>
+            </header>
+            <footer>
+                <button onClick={deleteProduct}>Delete</button>
+            </footer>
+        </article>
     );
 }
+
+export default ProductItem;
