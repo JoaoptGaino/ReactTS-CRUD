@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import {useHistory} from 'react-router-dom';
+import './styles.css';
 export interface Product {
     id: number;
     name: string;

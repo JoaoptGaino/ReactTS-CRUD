@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ProductItem,{Product} from '../../components/ProductItem';
-
+import './styles.css';
 function ProductList() {
     const [products, setProducts] = useState([]);
     useEffect(() => {

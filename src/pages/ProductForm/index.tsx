@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import api from '../../services/api';
 import { useHistory } from 'react-router-dom';
+import './styles.css';
 
 function ProductForm() {
     const history = useHistory();
@@ -9,29 +10,40 @@ function ProductForm() {
     function handleCreateProduct(e: FormEvent) {
         e.preventDefault();
 
-        api.post('products',{
+        api.post('products', {
             name,
-            price:Number(price)
-        }).then(()=>{
+            price: Number(price)
+        }).then(() => {
             alert("Created product");
             history.push('/');
-        }).catch(()=>{
+        }).catch(() => {
             alert("Error while creating product");
         })
     }
     return (
         <div id="product-form" className="container">
-            <h1>Product Form</h1>
+
             <main>
-                <form onSubmit={handleCreateProduct}>
-                    <input type="text" name="name" placeholder="Name" value={name}
-                        onChange={(e) => { setName(e.target.value) }}
-                    />
-                    <input type="text" name="price" placeholder="Price" value={price}
-                        onChange={(e) => { setPrice(e.target.value) }}
-                    />
-                    <button type="submit">Criar</button>
-                </form>
+                <fieldset>
+                    <legend>Product Form</legend>
+                    <form onSubmit={handleCreateProduct}>
+                        <div className="input-block">
+                            <label htmlFor="name">Product name</label>
+                            <input type="text" name="name" placeholder="Name" value={name}
+                                onChange={(e) => { setName(e.target.value) }}
+                            />
+                        </div>
+                        <div className="input-block">
+                            <label htmlFor="price">Product price</label>
+                            <input type="text" name="price" placeholder="Price" value={price}
+                                onChange={(e) => { setPrice(e.target.value) }}
+                            />
+                        </div>
+                        <footer>
+                            <button type="submit">Create</button>
+                        </footer>
+                    </form>
+                </fieldset>
             </main>
         </div>
     );
