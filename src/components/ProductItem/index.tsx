@@ -11,10 +11,17 @@ interface ProductItemProps {
     product: Product;
 }
 const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
+    const [products,setProducts] = useState<Product[]>([]);
+    useEffect(()=>{
+        api.get('products')
+        .then(response=>{
+            setProducts(response.data);
+        });
+    })
     function deleteProduct(){
         return api.delete(`products/${product.id}`)
         .then(response=>{
-            alert("Deleted product");
+            console.log(response);
         })
         .catch(err=>{
             console.log(err);
