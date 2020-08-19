@@ -19,7 +19,14 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         .catch(err=>{
             console.log(err);
         })
-        
+    }
+    function editProduct(){
+        return api.put(`products/${product.id}`,{
+            name:"Test"
+        })
+        .then(response=>{
+            console.log(response);
+        });
     }
     return (
         <article className="product-item">
@@ -31,6 +38,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
             </header>
             <footer>
                 <button onClick={deleteProduct}>Delete</button>
+                <button onClick={editProduct}>Update</button>
             </footer>
         </article>
     );
